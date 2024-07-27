@@ -1,7 +1,3 @@
-Here's an updated README for the `pdfzip` project. It includes detailed instructions on how to use it, along with an explanation of each command-line argument:
-
----
-
 # pdfzip
 
 A simple and efficient PDF compressor using Ghostscript. This tool allows you to compress PDF files with various levels of compression, making it ideal for reducing file sizes for storage or sharing.
@@ -18,13 +14,40 @@ A simple and efficient PDF compressor using Ghostscript. This tool allows you to
 
 ## Installation
 
-To install `pdfzip`, use pip:
+You can install `pdfzip` using one of the following methods:
+
+### Option 1: Install via pip
+
+To install `pdfzip` from PyPI using pip, run the following command:
 
 ```bash
 pip install pdfzip
 ```
 
-Ensure that Ghostscript is installed on your system and available in your system's PATH. You can download it from the official [Ghostscript website](https://www.ghostscript.com/download.html).
+### Option 2: Install via Git Clone
+
+If you prefer to clone the repository and install manually, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/dev-r4hul/pdfzip.git
+   cd pdfzip
+   ```
+
+2. **Install the package:**
+
+   ```bash
+   pip install .
+   ```
+
+3. **(Optional) Add the script to your PATH:**
+
+   Make sure the installation directory is in your system’s PATH, or create a symbolic link to `pdfzip` for easy access.
+
+### Ghostscript Installation
+
+Ensure that Ghostscript is installed on your system and available in your system's PATH. You can download it from the official [Ghostscript website](https://ghostscript.com/releases/index.html).
 
 ## Usage
 
@@ -131,8 +154,4 @@ The script will provide detailed error messages if something goes wrong, such as
 
 ### Troubleshooting
 
-If you encounter any issues, ensure that Ghostscript is installed correctly and available in your system's PATH. If you need further assistance, please refer to the [Ghostscript documentation](https://www.ghostscript.com/doc/current/Use.htm).
-
----
-
-This updated README should help users understand how to use `pdfzip` effectively and provide clarity on the available options and features. If there's anything else you'd like to add or modify, let me know!
+If you encounter any issues, ensure that Ghostscript is installed correctly and available in your system's PATH. If you need further assistance, please refer to the [Ghostscript documentation]((https://ghostscript.readthedocs.io/en/latest/current/Use.htm)).

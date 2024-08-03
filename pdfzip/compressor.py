@@ -6,7 +6,6 @@ import subprocess
 import sys
 import os
 
-
 class PDFCompressor:
     def __init__(self, compress_level=2):
         self.compress_level = compress_level
@@ -75,12 +74,13 @@ class PDFCompressor:
         sys.exit(1)
 
     def compress_file(self, input_path, output_path):
-        output_path = output_path if output_path else "temp.pdf"
-        self.compress(input_path, Path(output_path))
-
-        if output_path == "temp.pdf":
-            shutil.copyfile("temp.pdf", input_path)
-            Path("temp.pdf").unlink()
+        if input_path.suffix != '.pdf':
+            raise ValueError("The input file must be a PDF.")
+        
+        if output_path is None:
+            output_path = input_path.with_stem(input_path.stem + '.compressed').with_suffix('.pdf')
+        
+        self.compress(input_path, output_path)
 
     def compress_folder(self, input_folder, output_folder):
         pdf_files = list(input_folder.glob("*.pdf"))
@@ -89,11 +89,13 @@ class PDFCompressor:
             print(f"No PDF files found in the directory: {input_folder}")
             return
 
-        output_folder = output_folder if output_folder else input_folder
-
+        output_folder = output_folder if output_folder else input_folder / 'Compressed'
+        output_folder.mkdir(parents=True, exist_ok=True)
+        
         tasks = [(pdf, output_folder / pdf.name) for pdf in pdf_files]
-        with ProcessPoolExecutor() as executor:
-            executor.map(lambda p: self.compress_file(*p), tasks)
+
+        with ProcessPoolExecutor(max_workers=min(len(pdf_files), 4)) as executor:
+            executor.map(self.compress_file, [t[0] for t in tasks], [t[1] for t in tasks])
 
     def open_file(self, file_path):
         try:

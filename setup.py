@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 setup(
     name="pdfzip",
     version="0.1.0",
-    author="Theeko74, ChatGPT",
-    author_email="author@example.com",
+    author="Rahul Choudhary",
+    author_email="goodluckrahul@yahoo.com",
     description="A simple PDF compressor using Ghostscript",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/pdfzip",
+    url="https://github.com/dev-r4hul/pdfzip",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
